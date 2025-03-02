@@ -19,6 +19,11 @@ const Navbar = () => {
         <NavLink to="/projects" className={({ isActive }) => (isActive ? "text-gray-400" : "text-white")}>
           Proyectos
         </NavLink>
+        {user?.role === "cliente" && (
+          <NavLink to="/my-private-projects" className="text-white hover:text-gray-400">
+            Mis Proyectos Privados
+          </NavLink>
+        )}
       </div>
 
       {/* Autenticación y Menú del Usuario */}

@@ -22,9 +22,14 @@ export const AuthProvider = ({ children }) => {
       const { data } = await api.post("/auth/login", { email, password });
       localStorage.setItem("token", data.token);
       setUser(data.user);
-      navigate("/profile");
+
+      if (data.needsUpdate) {
+        navigate("/complete-profile");
+      } else {
+        navigate("/profile");
+      }
     } catch (error) {
-      console.error("Error en login:", error);
+      console.error("Error en login:", error.response ? error.response.data.message : error.message);
     }
   };
 
