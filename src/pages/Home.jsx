@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
@@ -13,17 +13,17 @@ const Home = () => {
       </p>
 
       {user ? (
-        <Link to="/projects" className="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg">
+        <NavLink to="/projects" className="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg">
           Ver Proyectos
-        </Link>
+        </NavLink>
       ) : (
         <div className="flex gap-4">
-          <Link to="/login" className="bg-green-500 text-white px-6 py-3 rounded-lg text-lg">
+          <NavLink to="/login" className="bg-green-500 text-white px-6 py-3 rounded-lg text-lg">
             Iniciar Sesión
-          </Link>
-          <Link to="/register" className="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg">
+          </NavLink>
+          <NavLink to="/register" className="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg">
             Registrarse
-          </Link>
+          </NavLink>
         </div>
       )}
     </div>

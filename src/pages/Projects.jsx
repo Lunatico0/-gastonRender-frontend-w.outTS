@@ -31,7 +31,11 @@ const Projects = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {projects.map((project) => (
-          <div key={project._id} className="p-4 border rounded shadow">
+          <div
+            key={project._id}
+            className="p-4 border rounded shadow"
+            onClick={() => navigate(`/projects/${project._id}`)}
+          >
             {project.images.map((img, index) => (
               <img key={index} src={img.url} alt={project.title} className="w-full h-40 object-cover mb-2" />
             ))}
