@@ -8,7 +8,8 @@ import Projects from "../pages/Projects";
 import ProjectDetail from "../pages/ProjectDetail";
 import Profile from "../pages/Profile";
 import AdminPanel from "../pages/AdminPanel";
-import MyPrivateProjects from "../pages/MyPrivateProjects..jsx";
+import MyPrivateProjects from "../pages/MyPrivateProjects.jsx";
+import CompleteProfile from "../pages/CompleteProfile.jsx";
 
 const ProtectedRoute = ({ element, role }) => {
   const { user } = useContext(AuthContext);
@@ -27,6 +28,7 @@ const AppRouter = () => {
       <Route path="/projects" element={<Projects />} />
       <Route path="/projects/:id" element={<ProjectDetail />} />
       <Route path="/my-private-projects" element={<MyPrivateProjects />} />
+      <Route path="/complete-profile" element={<CompleteProfile />} />
       <Route path="/admin" element={<ProtectedRoute element={<AdminPanel />} role="admin" />} />
     </Routes>
   );

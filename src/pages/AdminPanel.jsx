@@ -15,6 +15,7 @@ const AdminPanel = () => {
   const [clients, setClients] = useState([]);  // 🔹 Lista de clientes
   const [selectedClient, setSelectedClient] = useState("");  // 🔹 Cliente seleccionado
   const [tempEmail, setTempEmail] = useState("");
+  const [tempName, setTempName] = useState("");
 
   useEffect(() => {
     fetchClients();
@@ -36,8 +37,12 @@ const AdminPanel = () => {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await api.post("/auth/create-user", { email: tempEmail, role: "cliente" });
-      alert(`Usuario creado con éxito. Contraseña temporal: ${data.tempPassword}`);
+      const { data } = await api.post("/auth/create-user", { name: tempName, email: tempEmail, role: "cliente" });
+
+      console.log("🔐 Contraseña temporal:", data.tempPassword);
+      alert(`Usuario creado con éxito.\n\n📧 Email: ${tempEmail}\n🔑 Contraseña: ${data.tempPassword}\n\nRecuerda compartir estos datos con el cliente.`);
+
+      setTempName("");
       setTempEmail("");
       fetchClients(); // 🔹 Recargar lista de clientes
     } catch (error) {
@@ -86,6 +91,14 @@ const AdminPanel = () => {
       <div className="p-4 border rounded shadow-md mb-6">
         <h3 className="text-xl font-semibold mb-2">Crear Usuario Cliente</h3>
         <form onSubmit={handleCreateUser}>
+        <input
+            type="text"
+            placeholder="Nombre del Cliente"
+            className="w-full p-2 mb-2 border rounded"
+            value={tempName}
+            onChange={(e) => setTempName(e.target.value)}
+            required
+          />
           <input
             type="email"
             placeholder="Correo Electrónico del Cliente"

@@ -12,10 +12,16 @@ const MyPrivateProjects = () => {
 
   const fetchPrivateProjects = async () => {
     try {
-      const { data } = await api.get("/projects/my-private-projects");
+      console.log("🔍 Haciendo petición a /projects/privateProject");
+
+      const { data } = await api.get("/projects/privateProject", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      console.log("✅ Proyectos privados recibidos:", data);
       setProjects(data);
     } catch (error) {
-      console.error("❌ Error obteniendo proyectos privados:", error);
+      console.error("❌ Error obteniendo proyectos privados:", error.response ? error.response.data.message : error.message);
     }
   };
 
